@@ -290,14 +290,14 @@ with tab3:
     st.header("Радар-диаграммы")
     
     if st.session_state.calculation_done and st.session_state.data_sol is not None:
-        # Добавляем информацию о данных для отладки
-        with st.expander("Информация о данных (для отладки)"):
-            st.write(f"Размер данных: {st.session_state.data_sol.shape}")
-            st.write(f"Диапазон значений: {np.min(st.session_state.data_sol):.3f} - {np.max(st.session_state.data_sol):.3f}")
-            st.write("Первые 5 значений начального момента:")
-            st.write(st.session_state.data_sol[0][:5])
-            st.write("Первые 5 значений конечного момента:")
-            st.write(st.session_state.data_sol[-1][:5])
+        # # Добавляем информацию о данных для отладки
+        # with st.expander("Информация о данных (для отладки)"):
+        #     st.write(f"Размер данных: {st.session_state.data_sol.shape}")
+        #     st.write(f"Диапазон значений: {np.min(st.session_state.data_sol):.3f} - {np.max(st.session_state.data_sol):.3f}")
+        #     st.write("Первые 5 значений начального момента:")
+        #     st.write(st.session_state.data_sol[0][:5])
+        #     st.write("Первые 5 значений конечного момента:")
+        #     st.write(st.session_state.data_sol[-1][:5])
         
         # Создаем диаграммы
         diagrams = process.create_radar_diagrams(
@@ -337,94 +337,3 @@ with tab4:
 # Информация внизу
 st.markdown("---")
 st.write("Модель ISO для анализа качества программного обеспечения")
-# with tab2:
-#     st.header("Графики характеристик")
-    
-#     if st.session_state.calculation_done and st.session_state.data_sol is not None:
-#         # Создаем основной график динамики характеристик
-#         fig = process.create_graphic(st.session_state.t, st.session_state.data_sol)
-#         st.pyplot(fig)
-        
-#         # Кнопка для обновления графика
-#         if st.button("Обновить график"):
-#             st.rerun()
-#     else:
-#         st.info("Выполните вычисления на вкладке 'Параметры' чтобы увидеть графики")
-
-# # with tab3:
-# #     st.header("Радар-диаграммы")
-    
-# #     if st.session_state.calculation_done and st.session_state.data_sol is not None:
-# #         # Создаем радар-диаграммы для разных моментов времени
-# #         radar = RadarDiagram()
-# #         labels = process.labels_array()
-# #         data = st.session_state.data_sol
-        
-# #         # Моменты времени для диаграмм
-# #         moments = [
-# #             (0, "Начальный момент времени"),
-# #             (len(data)//4, "1/4 времени"),
-# #             (len(data)//2, "1/2 времени"), 
-# #             (len(data)-1, "Конечный момент времени")
-# #         ]
-        
-# #         for idx, (moment, title) in enumerate(moments):
-# #             st.subheader(title)
-# #             fig = radar.draw([data[0], data[moment]], labels, title)
-# #             st.pyplot(fig)
-            
-# #         # Кнопка для обновления диаграмм
-# #         if st.button("Обновить диаграммы"):
-# #             st.rerun()
-# #     else:
-# #         st.info("Выполните вычисления на вкладке 'Параметры' чтобы увидеть диаграммы")
-# with tab3:
-#     st.header("Радар-диаграммы")
-    
-#     if st.session_state.calculation_done and st.session_state.data_sol is not None:
-#         # Добавляем информацию о данных для отладки
-#         with st.expander("Информация о данных (для отладки)"):
-#             st.write(f"Размер данных: {st.session_state.data_sol.shape}")
-#             st.write(f"Диапазон значений: {np.min(st.session_state.data_sol):.3f} - {np.max(st.session_state.data_sol):.3f}")
-#             st.write("Первые 5 значений начального момента:")
-#             st.write(st.session_state.data_sol[0][:5])
-#             st.write("Первые 5 значений конечного момента:")
-#             st.write(st.session_state.data_sol[-1][:5])
-        
-#         # Создаем диаграммы
-#         diagrams = process.create_radar_diagrams(
-#             st.session_state.data_sol, 
-#             process.labels_array()
-#         )
-        
-#         # Отображаем диаграммы
-#         for fig, title in diagrams:
-#             st.subheader(title)
-#             st.pyplot(fig)
-            
-#         # Кнопка для принудительного обновления
-#         col1, col2, col3 = st.columns([1, 2, 1])
-#         with col2:
-#             if st.button("Обновить диаграммы", use_container_width=True):
-#                 st.rerun()
-                
-#     else:
-#         st.info("Выполните вычисления на вкладке 'Параметры' чтобы увидеть диаграммы")
-# with tab4:
-#     st.header("Графики возмущений")
-    
-#     if st.session_state.calculation_done and st.session_state.free_members is not None:
-#         # Создаем график возмущений
-#         t = st.session_state.t
-#         fig = process.draw_third_graphic(t)
-#         st.pyplot(fig)
-        
-#         # Кнопка для обновления графика возмущений
-#         if st.button("Обновить график возмущений"):
-#             st.rerun()
-#     else:
-#         st.info("Выполните вычисления на вкладке 'Параметры' чтобы увидеть графики возмущений")
-
-
-# st.markdown("---")
-# st.write("Модель ISO для анализа качества программного обеспечения")
