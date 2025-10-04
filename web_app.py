@@ -375,37 +375,7 @@ with tab3:
                 
     else:
         st.info("Выполните вычисления на вкладке 'Параметры' чтобы увидеть диаграммы")
-# with tab4:
-#     st.header("Графики возмущений")
-    
-#     if st.session_state.calculation_done and st.session_state.free_members is not None:
-#         t = st.session_state.t
-#         fig = process.draw_third_graphic(t)
-        
-#         fig.set_size_inches(10, 6)
-#         ax = fig.gca()
-     
-#         ax.set_xlabel('Время')
-#         ax.set_ylabel('Значение')
-#         ax.set_title('Временные коэффициенты возмущений')
-#         ax.legend()
-#         ax.grid(True)
-        
-#         st.pyplot(fig)
-#         from io import BytesIO
-#         buf = BytesIO()
-#         fig.savefig(buf, format="png", dpi=300, bbox_inches='tight')
-#         st.download_button(
-#             label="📥 Скачать график возмущений",
-#             data=buf.getvalue(),
-#             file_name="график_возмущений.png",
-#             mime="image/png",
-#             use_container_width=True
-#         )
-        
-        
-#     else:
-#         st.info("Выполните вычисления на вкладке 'Параметры' чтобы увидеть графики возмущений")
+
 with tab4:
     st.header("График возмущений")
    
