@@ -5,7 +5,7 @@ from scipy.integrate import odeint
 from radar_diagram import RadarDiagram
 import functions
 import streamlit as st
-
+import gc
 dict_of_function_expressions = dict()
 free_members_of_fun_expr = []
 data_sol = []
@@ -227,6 +227,7 @@ def process_calculation(start_values, free_members):
     global free_members_of_fun_expr
     
     plt.close('all')
+    gc.collect()
 
     free_members_of_fun_expr = free_members
     t = np.linspace(0, 1, 80)
@@ -235,5 +236,7 @@ def process_calculation(start_values, free_members):
 
     data_sol = odeint(functions.pend, start_values, t, 
                      args=(dict_of_function_expressions, functions.function_list))
+    
+    gc.collect()
     
     return t, data_sol

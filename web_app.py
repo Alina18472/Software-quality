@@ -7,7 +7,10 @@ import functions
 import process
 from radar_diagram import RadarDiagram
 from functions import fak_1, fak_2, fak_3, fak_4, fak_5, fak_6
-
+import gc
+import os
+os.environ['OMP_NUM_THREADS'] = '1'  # Уменьшаем потоки numpy
+os.environ['OPENBLAS_NUM_THREADS'] = '1'
 st.set_page_config(page_title="Модель ISO", layout="wide")
 
 # Инициализация сессии

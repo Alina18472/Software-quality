@@ -67,7 +67,7 @@ class RadarDiagram():
 
         spoke_labels = labels
 
-        fig, axs = plt.subplots(figsize=(12, 12), subplot_kw=dict(projection='radar'))
+        fig, axs = plt.subplots(figsize=(8, 8), subplot_kw=dict(projection='radar'))
         fig.subplots_adjust(wspace=1, hspace=1, top=0.85, bottom=0.05)
 
         colors = ['b', 'r']
