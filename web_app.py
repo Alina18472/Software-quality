@@ -6,7 +6,7 @@ from scipy.integrate import odeint
 import functions
 import process
 from radar_diagram import RadarDiagram
-
+from functions import fak_1, fak_2, fak_3, fak_4, fak_5, fak_6
 
 st.set_page_config(page_title="Модель ISO", layout="wide")
 
@@ -375,38 +375,69 @@ with tab3:
                 
     else:
         st.info("Выполните вычисления на вкладке 'Параметры' чтобы увидеть диаграммы")
-with tab4:
-    st.header("Графики возмущений")
+# with tab4:
+#     st.header("Графики возмущений")
     
-    if st.session_state.calculation_done and st.session_state.free_members is not None:
-        t = st.session_state.t
-        fig = process.draw_third_graphic(t)
+#     if st.session_state.calculation_done and st.session_state.free_members is not None:
+#         t = st.session_state.t
+#         fig = process.draw_third_graphic(t)
         
-        fig.set_size_inches(10, 6)
-        ax = fig.gca()
+#         fig.set_size_inches(10, 6)
+#         ax = fig.gca()
      
-        ax.set_xlabel('Время')
-        ax.set_ylabel('Значение')
-        ax.set_title('Временные коэффициенты возмущений')
-        ax.legend()
-        ax.grid(True)
+#         ax.set_xlabel('Время')
+#         ax.set_ylabel('Значение')
+#         ax.set_title('Временные коэффициенты возмущений')
+#         ax.legend()
+#         ax.grid(True)
         
-        st.pyplot(fig)
-        from io import BytesIO
-        buf = BytesIO()
-        fig.savefig(buf, format="png", dpi=300, bbox_inches='tight')
-        st.download_button(
-            label="📥 Скачать график возмущений",
-            data=buf.getvalue(),
-            file_name="график_возмущений.png",
-            mime="image/png",
-            use_container_width=True
-        )
+#         st.pyplot(fig)
+#         from io import BytesIO
+#         buf = BytesIO()
+#         fig.savefig(buf, format="png", dpi=300, bbox_inches='tight')
+#         st.download_button(
+#             label="📥 Скачать график возмущений",
+#             data=buf.getvalue(),
+#             file_name="график_возмущений.png",
+#             mime="image/png",
+#             use_container_width=True
+#         )
         
         
-    else:
-        st.info("Выполните вычисления на вкладке 'Параметры' чтобы увидеть графики возмущений")
-
+#     else:
+#         st.info("Выполните вычисления на вкладке 'Параметры' чтобы увидеть графики возмущений")
+with tab4:
+    st.header("График возмущений")
+   
+    t = np.linspace(0, 1, 100)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    ax.plot(t, [fak_1(ti) for ti in t], label='fak_1: t² + 1', linewidth=2)
+    ax.plot(t, [fak_2(ti) for ti in t], label='fak_2: cos²(1.5πt - π/6)/4 + 0.2', linewidth=2)
+    ax.plot(t, [fak_3(ti) for ti in t], label='fak_3: sin(πt - π/6)/2.5 + 0.3', linewidth=2)
+    ax.plot(t, [fak_4(ti) for ti in t], label='fak_4: 2t - 1', linewidth=2)
+    ax.plot(t, [fak_5(ti) for ti in t], label='fak_5: cos²(1.5πt - π/6)/4', linewidth=2)
+    ax.plot(t, [fak_6(ti) for ti in t], label='fak_6: sin²(πt - π/6)/2.5 + 0.3', linewidth=2)
+    
+    ax.set_xlabel('Время')
+    ax.set_ylabel('Значение')
+    ax.set_title('Временные коэффициенты возмущений')
+    ax.legend()
+    ax.grid(True)
+    
+    st.pyplot(fig)
+    
+    # Кнопка скачивания
+    from io import BytesIO
+    buf = BytesIO()
+    fig.savefig(buf, format="png", dpi=300, bbox_inches='tight')
+    st.download_button(
+        label="📥 Скачать график возмущений",
+        data=buf.getvalue(),
+        file_name="график_возмущений.png",
+        mime="image/png",
+        use_container_width=True
+    )
 
 
 st.markdown("---")
